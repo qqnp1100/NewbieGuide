@@ -1,3 +1,28 @@
+# 本分支修改内容
+
+- 增加setOnGuideBgDrawListener方法，可以绘制自定义背景
+
+![sample](https://github.com/qqnp1100/NewbieGuide/raw/master/screenshoot/device-2020-08-24-140858.png)
+
+# 本分支集成方式
+
+Step 1. Add the JitPack repository to your build file
+Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://www.jitpack.io' }
+		}
+	}
+Step 2. Add the dependency [![](https://jitpack.io/v/qqnp1100/NewbieGuide.svg)](https://jitpack.io/#qqnp1100/NewbieGuide)
+
+	dependencies {
+            //请自行改为最新版本
+	        implementation 'com.github.qqnp1100:NewbieGuide:1.0.1'
+	}
+
+
 [![](https://jitpack.io/v/huburt-Hu/NewbieGuide.svg)](https://jitpack.io/#huburt-Hu/NewbieGuide)
 
 

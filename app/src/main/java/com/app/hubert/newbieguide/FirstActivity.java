@@ -3,11 +3,12 @@ package com.app.hubert.newbieguide;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.IntDef;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Shader;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.app.hubert.guide.NewbieGuide;
 import com.app.hubert.guide.core.Controller;
+import com.app.hubert.guide.listener.OnGuideBgDrawListener;
 import com.app.hubert.guide.listener.OnGuideChangedListener;
 import com.app.hubert.guide.listener.OnHighlightDrewListener;
 import com.app.hubert.guide.listener.OnLayoutInflatedListener;
@@ -23,10 +25,6 @@ import com.app.hubert.guide.model.GuidePage;
 import com.app.hubert.guide.model.HighLight;
 import com.app.hubert.guide.model.HighlightOptions;
 import com.app.hubert.guide.model.RelativeGuide;
-import com.app.hubert.guide.util.ViewUtils;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -184,6 +182,33 @@ public class FirstActivity extends AppCompatActivity {
                         .alwaysShow(true)//总是显示，调试时可以打开
                         .addGuidePage(GuidePage.newInstance()
                                 .addHighLight(new RectF(0, 800, 500, 1000))
+                        )
+                        .show();
+            }
+        });
+
+        findViewById(R.id.btn_custom).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final Paint paint = new Paint();
+                LinearGradient mLinearGradient = new LinearGradient(0, 0, 0, 1080,
+                        new int[]{0x4D000000, 0xCC000000}, null,
+                        Shader.TileMode.REPEAT);
+                paint.setShader(mLinearGradient);
+                NewbieGuide.with(FirstActivity.this)
+                        .setLabel("custom_bg")
+//                        .setShowCounts(3)//控制次数
+                        .alwaysShow(true)//总是显示，调试时可以打开
+                        .addGuidePage(GuidePage.newInstance()
+                                .addHighLight(btnSimple)
+                                .setLayoutRes(R.layout.view_guide_simple)
+                                .setOnGuideBgDrawListener(new OnGuideBgDrawListener() {
+                                    @Override
+                                    public void draw(Canvas canvas, int width, int height) {
+                                        canvas.drawRect(0, 0, width, height / 2, paint);
+                                    }
+                                })
                         )
                         .show();
             }

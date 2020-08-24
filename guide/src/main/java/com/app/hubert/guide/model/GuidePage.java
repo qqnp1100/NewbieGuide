@@ -7,11 +7,11 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.animation.Animation;
 
+import com.app.hubert.guide.listener.OnGuideBgDrawListener;
 import com.app.hubert.guide.listener.OnHighlightDrewListener;
 import com.app.hubert.guide.listener.OnLayoutInflatedListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,6 +29,7 @@ public class GuidePage {
     private int layoutResId;
     private int[] clickToDismissIds;
     private OnLayoutInflatedListener onLayoutInflatedListener;
+    private OnGuideBgDrawListener onGuideBgDrawListener;
     private OnHighlightDrewListener onHighlightDrewListener;
     private Animation enterAnimation, exitAnimation;
 
@@ -194,6 +195,15 @@ public class GuidePage {
     }
 
     /**
+     * 设置自定义背景
+     * @param onGuideBgDrawListener
+     */
+    public GuidePage setOnGuideBgDrawListener(OnGuideBgDrawListener onGuideBgDrawListener) {
+        this.onGuideBgDrawListener = onGuideBgDrawListener;
+        return this;
+    }
+
+    /**
      * 设置进入动画
      */
     public GuidePage setEnterAnimation(Animation enterAnimation) {
@@ -235,6 +245,10 @@ public class GuidePage {
 
     public OnLayoutInflatedListener getOnLayoutInflatedListener() {
         return onLayoutInflatedListener;
+    }
+
+    public OnGuideBgDrawListener getOnGuideBgDrawListener() {
+        return onGuideBgDrawListener;
     }
 
     public Animation getEnterAnimation() {
