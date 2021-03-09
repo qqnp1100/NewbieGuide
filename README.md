@@ -1,5 +1,6 @@
 # 本分支修改内容
-
+- 增加RelativeGuide新的构造方法，控制GuideView的x、y偏移位置
+- 增加setShowBlur方法，控制是否显示高亮阴影
 - 增加setOnGuideBgDrawListener方法，可以绘制自定义背景
 
 ![sample](https://github.com/qqnp1100/NewbieGuide/raw/master/screenshoot/device-2020-08-24-140858.png)
@@ -19,7 +20,7 @@ Step 2. Add the dependency [![](https://jitpack.io/v/qqnp1100/NewbieGuide.svg)](
 
 	dependencies {
             //请自行改为最新版本
-	        implementation 'com.github.qqnp1100:NewbieGuide:1.0.1'
+	        implementation 'com.github.qqnp1100:NewbieGuide:1.0.2'
 	}
 
 

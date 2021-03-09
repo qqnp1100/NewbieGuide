@@ -150,7 +150,7 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 HighlightOptions options = new HighlightOptions.Builder()
-                        .setRelativeGuide(new RelativeGuide(R.layout.view_relative_guide, Gravity.LEFT, 100) {
+                        .setRelativeGuide(new RelativeGuide(R.layout.view_relative_guide, Gravity.LEFT, 100,-100) {
                             @Override
                             protected void onLayoutInflated(View view, Controller controller) {
                                 TextView textView = view.findViewById(R.id.tv);

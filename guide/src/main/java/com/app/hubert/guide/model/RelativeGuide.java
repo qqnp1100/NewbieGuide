@@ -28,6 +28,7 @@ public class RelativeGuide {
     }
 
     public static class MarginInfo {
+
         public int leftMargin;
         public int topMargin;
         public int rightMargin;
@@ -51,6 +52,7 @@ public class RelativeGuide {
     public int layout;
     public int padding;
     public int gravity;
+    public int marginx, marginy;
 
     public RelativeGuide(@LayoutRes int layout, @LimitGravity int gravity) {
         this.layout = layout;
@@ -68,6 +70,18 @@ public class RelativeGuide {
         this.padding = padding;
     }
 
+    /**
+     * @param layout  相对位置引导布局
+     * @param gravity 仅限left top right bottom
+     * @param marginx marginy 朝向view的 x、y 偏移量
+     */
+    public RelativeGuide(@LayoutRes int layout, @LimitGravity int gravity, int marginx, int marginy) {
+        this.layout = layout;
+        this.gravity = gravity;
+        this.marginx = marginx;
+        this.marginy = marginy;
+    }
+
     public final View getGuideLayout(ViewGroup viewGroup, Controller controller) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(layout, viewGroup, false);
         onLayoutInflated(view);
@@ -77,10 +91,10 @@ public class RelativeGuide {
         LogUtil.e(marginInfo.toString());
         offsetMargin(marginInfo, viewGroup, view);
         layoutParams.gravity = marginInfo.gravity;
-        layoutParams.leftMargin += marginInfo.leftMargin;
-        layoutParams.topMargin += marginInfo.topMargin;
-        layoutParams.rightMargin += marginInfo.rightMargin;
-        layoutParams.bottomMargin += marginInfo.bottomMargin;
+        layoutParams.leftMargin += marginInfo.leftMargin + marginx;
+        layoutParams.topMargin += marginInfo.topMargin + (marginInfo.gravity != Gravity.BOTTOM ? marginy : 0);
+        layoutParams.rightMargin += marginInfo.rightMargin + marginx;
+        layoutParams.bottomMargin += marginInfo.bottomMargin + (marginInfo.gravity != Gravity.TOP ? marginy : 0);
         view.setLayoutParams(layoutParams);
         return view;
     }
