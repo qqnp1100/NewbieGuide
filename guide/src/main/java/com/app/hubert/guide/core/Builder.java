@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Builder {
+
     Activity activity;
     Fragment fragment;
     android.support.v4.app.Fragment v4Fragment;
@@ -20,6 +21,7 @@ public class Builder {
     boolean alwaysShow;//总是显示 default false
     View anchor;//锚点view
     int showCounts = 1;//显示次数 default once
+    boolean showBlur = true;
     OnGuideChangedListener onGuideChangedListener;
     OnPageChangedListener onPageChangedListener;
     List<GuidePage> guidePages = new ArrayList<>();
@@ -99,6 +101,11 @@ public class Builder {
      */
     public Builder setLabel(String label) {
         this.label = label;
+        return this;
+    }
+
+    public Builder setShowBlur(boolean showBlur) {
+        this.showBlur = showBlur;
         return this;
     }
 

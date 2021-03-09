@@ -198,6 +198,7 @@ public class FirstActivity extends AppCompatActivity {
                 paint.setShader(mLinearGradient);
                 NewbieGuide.with(FirstActivity.this)
                         .setLabel("custom_bg")
+                        .setShowBlur(false)
 //                        .setShowCounts(3)//控制次数
                         .alwaysShow(true)//总是显示，调试时可以打开
                         .addGuidePage(GuidePage.newInstance()
